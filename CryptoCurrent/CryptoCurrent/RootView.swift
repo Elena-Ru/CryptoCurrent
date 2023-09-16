@@ -12,7 +12,7 @@ class RootView: UIView {
   
   let quoteContainer: UIView = {
       let view = UIView()
-      view.backgroundColor = .white
+      view.backgroundColor = .secondaryBackground
       view.layer.cornerRadius = 15
       view.layer.shadowColor = UIColor.black.cgColor
       view.layer.shadowOpacity = 0.2
@@ -25,22 +25,32 @@ class RootView: UIView {
   var priceLabel: UILabel = {
       let label = UILabel()
       label.textAlignment = .natural
-      label.textColor = .white
+      label.textColor = .goldAccent
+      label.translatesAutoresizingMaskIntoConstraints = false
+      return label
+  }()
+  
+  var titleLabel: UILabel = {
+      let label = UILabel()
+      label.text = "CryptoCurrent"
+      label.textColor = UIColor.white
+      label.textAlignment = .center
+      label.font = UIFont.systemFont(ofSize: 18)
       label.translatesAutoresizingMaskIntoConstraints = false
       return label
   }()
   
   let btcIcon: UIImageView = {
-      let image = UIImageView(image: UIImage(named: "btcIcon"))
+      let image = UIImageView(image: UIImage(systemName: "bitcoinsign"))
+      image.tintColor = .iconWhite
       image.translatesAutoresizingMaskIntoConstraints = false
       return image
   }()
 
-  
   var descriptionLabel: UILabel = {
       let label = UILabel()
       label.textAlignment = .natural
-      label.textColor = .white
+      label.textColor = .secondaryText
       label.text = "Current BTC/USDT Price"
       label.translatesAutoresizingMaskIntoConstraints = false
       return label
@@ -57,25 +67,29 @@ class RootView: UIView {
   }
   
   private func setupLayout() {
+    addSubview(titleLabel)
     addSubview(quoteContainer)
     quoteContainer.addSubview(btcIcon)
     quoteContainer.addSubview(priceLabel)
     quoteContainer.addSubview(descriptionLabel)
     
     NSLayoutConstraint.activate([
+        titleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+        titleLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
+        
         quoteContainer.centerXAnchor.constraint(equalTo: self.centerXAnchor),
         quoteContainer.centerYAnchor.constraint(equalTo: self.centerYAnchor),
         quoteContainer.leadingAnchor.constraint(greaterThanOrEqualTo: self.leadingAnchor, constant: 20),
         quoteContainer.trailingAnchor.constraint(lessThanOrEqualTo: self.trailingAnchor, constant: -20),
-        quoteContainer.widthAnchor.constraint(equalToConstant: 200),
-        quoteContainer.heightAnchor.constraint(equalToConstant: 300),
+        quoteContainer.widthAnchor.constraint(equalToConstant: 250),
+        quoteContainer.heightAnchor.constraint(equalToConstant: 250),
         
         btcIcon.topAnchor.constraint(equalTo: quoteContainer.topAnchor, constant: 20),
         btcIcon.centerXAnchor.constraint(equalTo: quoteContainer.centerXAnchor),
         btcIcon.widthAnchor.constraint(equalToConstant: 50),
         btcIcon.heightAnchor.constraint(equalToConstant: 50),
         
-        priceLabel.topAnchor.constraint(equalTo: btcIcon.bottomAnchor, constant: 10),
+        priceLabel.topAnchor.constraint(equalTo: btcIcon.bottomAnchor, constant: 30),
         priceLabel.centerXAnchor.constraint(equalTo: quoteContainer.centerXAnchor),
         
         descriptionLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 5),

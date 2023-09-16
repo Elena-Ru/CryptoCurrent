@@ -20,6 +20,7 @@ class ViewController: UIViewController, URLSessionWebSocketDelegate {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    view.backgroundColor = .darkBackground
     connectWebSocket()
   }
   
