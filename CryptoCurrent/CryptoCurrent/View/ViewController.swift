@@ -19,9 +19,12 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .darkBackground
-
         presenter.connectWebSocket()
+    }
+  
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        view.setGradientBackground(colorOne: .primaryDarkBlue, colorTwo: .secondaryGrayBlue)
     }
     
     deinit {
