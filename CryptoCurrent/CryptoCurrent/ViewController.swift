@@ -8,14 +8,19 @@
 import UIKit
 
 class ViewController: UIViewController, URLSessionWebSocketDelegate {
-  
-  @IBOutlet weak var priceLabel: UILabel!
-  
+ 
+  private var rootView = RootView()
   private var webSocketTask: URLSessionWebSocketTask!
   private let url = URL(string: "wss://stream.binance.com:9443/ws/btcusdt@trade")!
   
+  override func loadView() {
+      super.loadView()
+      view = rootView
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
+    view.backgroundColor = .darkBackground
     connectWebSocket()
   }
   
@@ -47,7 +52,7 @@ class ViewController: UIViewController, URLSessionWebSocketDelegate {
     if let data = message.data(using: .utf8), let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
       if let price = json["p"] as? String {
         DispatchQueue.main.async {
-          self.priceLabel.text = price
+          self.rootView.priceLabel.text = price
         }
       }
     }
