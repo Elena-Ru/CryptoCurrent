@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  CryptoCurrent
+
+  Created by Елена Русских on 2023-09-16.
+  
+*/
+"titleLabel" = "CryptoCurrent";
+"BTCDescription" = "Current BTC/USDT Price";
