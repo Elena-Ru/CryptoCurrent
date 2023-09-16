@@ -32,7 +32,7 @@ class RootView: UIView {
   
   var titleLabel: UILabel = {
       let label = UILabel()
-      label.text = "CryptoCurrent"
+      label.text = Texts.title
       label.textColor = UIColor.white
       label.textAlignment = .center
       label.font = UIFont.systemFont(ofSize: 18)
@@ -51,7 +51,7 @@ class RootView: UIView {
       let label = UILabel()
       label.textAlignment = .natural
       label.textColor = .secondaryText
-      label.text = "Current BTC/USDT Price"
+      label.text = Texts.description
       label.translatesAutoresizingMaskIntoConstraints = false
       return label
   }()
