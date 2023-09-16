@@ -10,7 +10,6 @@ import UIKit
 class ViewController: UIViewController {
     
     private var rootView = RootView()
-    var webSocketURL = URL(string: "wss://stream.binance.com:9443/ws/btcusdt@trade")!
     var presenter: CryptoPriceOutput!
   
     override func loadView() {
@@ -22,7 +21,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .darkBackground
 
-        presenter = CryptoPricePresenter(view: self, webSocketURL: webSocketURL)
         presenter.connectWebSocket()
     }
     
@@ -33,8 +31,8 @@ class ViewController: UIViewController {
 
 extension ViewController: CryptoPriceViewInput {
     func updatePrice(_ price: String) {
-      DispatchQueue.main.async {
-        self.rootView.priceLabel.text = price
-      }
+        DispatchQueue.main.async {
+          self.rootView.priceLabel.text = price
+        }
     }
 }
