@@ -6,7 +6,8 @@
 //
 
 import Foundation
+import UIKit
 
 protocol CryptoPriceViewInput: AnyObject {
-    func updatePrice(_ price: String)
+    func display(price: String, changeDirection: PriceChangeDirection)
 }

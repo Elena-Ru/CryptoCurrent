@@ -11,6 +11,7 @@ import Foundation
 class CryptoPricePresenter: CryptoPriceOutput {
     weak var view: CryptoPriceViewInput?
     private let webSocketService: WebSocketService
+    private var previousPrice: Double?
 
     init(view: CryptoPriceViewInput, webSocketURL: URL) {
         self.view = view
@@ -34,9 +35,27 @@ class CryptoPricePresenter: CryptoPriceOutput {
         }
     }
 
-    func didReceivePriceData(price: String) {
-        view?.updatePrice(price)
-    }
+  func didReceivePriceData(price: String) {
+      guard let currentPrice = Double(price) else {
+          view?.display(price: price, changeDirection: .neutral)
+          return
+      }
+      
+      var changeDirection: PriceChangeDirection?
+      if let previous = previousPrice {
+          if currentPrice > previous {
+              changeDirection = .increase
+          } else if currentPrice < previous {
+              changeDirection = .decrease
+          } else {
+              changeDirection = .neutral
+          }
+      }
+      
+      view?.display(price: price, changeDirection: changeDirection ?? .neutral)
+      previousPrice = currentPrice
+  }
+
 }
 
 extension CryptoPricePresenter: WebSocketServiceDelegate {

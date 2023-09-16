@@ -11,7 +11,7 @@ class ViewController: UIViewController {
     
     private var rootView = RootView()
     var presenter: CryptoPriceOutput!
-  
+    
     override func loadView() {
         super.loadView()
         view = rootView
@@ -33,9 +33,18 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: CryptoPriceViewInput {
-    func updatePrice(_ price: String) {
+    func display(price: String, changeDirection: PriceChangeDirection) {
         DispatchQueue.main.async {
-          self.rootView.priceLabel.text = price
+            self.rootView.priceLabel.text = price
+            switch changeDirection {
+            case .increase:
+                self.rootView.priceLabel.textColor = .green
+            case .decrease:
+                self.rootView.priceLabel.textColor = .red
+            case .neutral:
+                self.rootView.priceLabel.textColor = .goldAccent
+            }
         }
     }
 }
+
