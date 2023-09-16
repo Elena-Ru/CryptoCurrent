@@ -26,6 +26,7 @@ class RootView: UIView {
       let label = UILabel()
       label.textAlignment = .natural
       label.textColor = .goldAccent
+      label.backgroundColor = .clear
       label.translatesAutoresizingMaskIntoConstraints = false
       return label
   }()
