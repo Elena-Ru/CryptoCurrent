@@ -10,8 +10,8 @@ import UIKit
 class ViewController: UIViewController {
     
     private var rootView = RootView()
-    private let webSocketURL = URL(string: "wss://stream.binance.com:9443/ws/btcusdt@trade")!
-    private var presenter: CryptoPriceOutput!
+    var webSocketURL = URL(string: "wss://stream.binance.com:9443/ws/btcusdt@trade")!
+    var presenter: CryptoPriceOutput!
   
     override func loadView() {
         super.loadView()
