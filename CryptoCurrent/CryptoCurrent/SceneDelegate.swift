@@ -34,13 +34,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   }
 
   func sceneWillResignActive(_ scene: UIScene) {
-    // Called when the scene will move from an active state to an inactive state.
-    // This may occur due to temporary interruptions (ex. an incoming phone call).
+      guard let windowScene = (scene as? UIWindowScene) else { return }
+      
+      let coverView = UIView(frame: windowScene.coordinateSpace.bounds)
+      coverView.backgroundColor = .black
+      coverView.tag = 12345
+      windowScene.windows.first?.addSubview(coverView)
   }
 
   func sceneWillEnterForeground(_ scene: UIScene) {
-    // Called as the scene transitions from the background to the foreground.
-    // Use this method to undo the changes made on entering the background.
+      guard let windowScene = scene as? UIWindowScene else { return }
+      
+      if let coverView = windowScene.windows.first?.viewWithTag(12345) {
+        coverView.removeFromSuperview()
+      }
   }
 
   func sceneDidEnterBackground(_ scene: UIScene) {
@@ -48,7 +55,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // Use this method to save data, release shared resources, and store enough scene-specific state information
     // to restore the scene back to its current state.
   }
-
-
 }
 
