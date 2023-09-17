@@ -20,6 +20,20 @@
                ReferencedContainer = "container:CryptoCurrent.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B4EF5C692AB5B0E000BEBBF2"
+               BuildableName = "CryptoCurrentUITests.xctest"
+               BlueprintName = "CryptoCurrentUITests"
+               ReferencedContainer = "container:CryptoCurrent.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
