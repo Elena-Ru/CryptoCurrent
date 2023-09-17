@@ -10,7 +10,7 @@ import Foundation
 
 class CryptoPricePresenter: CryptoPriceOutput {
     weak var view: CryptoPriceViewInput?
-    private let webSocketService: WebSocketService
+    var webSocketService: WebSocketService
     private var previousPrice: Double?
 
     init(view: CryptoPriceViewInput, webSocketURL: URL) {
