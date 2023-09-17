@@ -24,7 +24,7 @@ class ViewController: UIViewController {
   
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        view.setGradientBackground(colorOne: .primaryDarkBlue, colorTwo: .secondaryGrayBlue)
+        view.backgroundColor = UIColor(named: "background")
     }
     
     deinit {
@@ -42,7 +42,7 @@ extension ViewController: CryptoPriceViewInput {
             case .decrease:
                 self.rootView.priceLabel.textColor = .red
             case .neutral:
-                self.rootView.priceLabel.textColor = .goldAccent
+                self.rootView.priceLabel.textColor = UIColor(named: "golden")
             }
         }
     }
