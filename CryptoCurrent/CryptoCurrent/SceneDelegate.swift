@@ -29,25 +29,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   }
 
   func sceneDidBecomeActive(_ scene: UIScene) {
-    // Called when the scene has moved from an inactive state to an active state.
-    // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
-  }
-
-  func sceneWillResignActive(_ scene: UIScene) {
-      guard let windowScene = (scene as? UIWindowScene) else { return }
-      
-      let coverView = UIView(frame: windowScene.coordinateSpace.bounds)
-      coverView.backgroundColor = .black
-      coverView.tag = 12345
-      windowScene.windows.first?.addSubview(coverView)
-  }
-
-  func sceneWillEnterForeground(_ scene: UIScene) {
       guard let windowScene = scene as? UIWindowScene else { return }
       
       if let coverView = windowScene.windows.first?.viewWithTag(12345) {
         coverView.removeFromSuperview()
       }
+  }
+
+  func sceneWillResignActive(_ scene: UIScene) {
+      guard let windowScene = (scene as? UIWindowScene) else { return }
+      
+      let blurEffect = UIBlurEffect(style: .systemUltraThinMaterial)
+      let blurredEffectView = UIVisualEffectView(effect: blurEffect)
+      blurredEffectView.frame = windowScene.coordinateSpace.bounds
+      blurredEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+      blurredEffectView.tag = 12345
+      
+      windowScene.windows.first?.addSubview(blurredEffectView)
+  }
+
+  func sceneWillEnterForeground(_ scene: UIScene) {
   }
 
   func sceneDidEnterBackground(_ scene: UIScene) {
