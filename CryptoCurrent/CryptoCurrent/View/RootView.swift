@@ -20,7 +20,7 @@ class RootView: UIView {
   
   let quoteContainer: UIView = {
       let view = UIView()
-      view.backgroundColor = .secondaryBackground
+      view.backgroundColor = UIColor(named: "secondaryBackground")
       view.layer.cornerRadius = 15
       view.layer.shadowColor = UIColor.black.cgColor
       view.layer.shadowOpacity = 0.2
@@ -33,7 +33,7 @@ class RootView: UIView {
   var priceLabel: UILabel = {
       let label = UILabel()
       label.textAlignment = .natural
-      label.textColor = .goldAccent
+      label.textColor =  .primaryDarkBlue
       label.backgroundColor = .clear
       label.accessibilityIdentifier = Constants.priceLabelIdentifier
       label.translatesAutoresizingMaskIntoConstraints = false
@@ -43,7 +43,7 @@ class RootView: UIView {
   var titleLabel: UILabel = {
       let label = UILabel()
       label.text = Texts.title
-      label.textColor = UIColor.white
+      label.textColor = UIColor(named: "mainText")
       label.textAlignment = .center
       label.font = UIFont.systemFont(ofSize: 18)
       label.accessibilityIdentifier = Constants.titleLabelIdentifier
@@ -53,7 +53,7 @@ class RootView: UIView {
   
   let btcIcon: UIImageView = {
       let image = UIImageView(image: UIImage(systemName: "bitcoinsign"))
-      image.tintColor = .iconWhite
+      image.tintColor = UIColor(named: "mainText")
       image.accessibilityIdentifier = Constants.btcIconIdentifier
       image.translatesAutoresizingMaskIntoConstraints = false
       return image
@@ -62,7 +62,7 @@ class RootView: UIView {
   var descriptionLabel: UILabel = {
       let label = UILabel()
       label.textAlignment = .natural
-      label.textColor = .secondaryText
+      label.textColor = UIColor(named: "SecondaryText")
       label.text = Texts.description
       label.accessibilityIdentifier = Constants.descriptionLabelIdentifier
       label.translatesAutoresizingMaskIntoConstraints = false

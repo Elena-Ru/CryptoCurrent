@@ -15,4 +15,5 @@ extension UIColor {
     static let goldAccent = UIColor(red: 255/255, green: 215/255, blue: 0/255, alpha: 1.0)
     static let secondaryText = UIColor(red: 179/255, green: 179/255, blue: 181/255, alpha: 1.0)
     static let iconWhite = UIColor.white
+    static let darkGold = UIColor(red: 139/255, green: 101/255, blue: 8/255, alpha: 1.0)
 }
