@@ -10,6 +10,14 @@ import UIKit
 
 class RootView: UIView {
   
+  private enum Constants {
+      static let titleLabelIdentifier = "title"
+      static let priceLabelIdentifier = "price"
+      static let btcIconIdentifier = "icon"
+      static let descriptionLabelIdentifier = "description"
+  }
+
+  
   let quoteContainer: UIView = {
       let view = UIView()
       view.backgroundColor = .secondaryBackground
@@ -27,6 +35,7 @@ class RootView: UIView {
       label.textAlignment = .natural
       label.textColor = .goldAccent
       label.backgroundColor = .clear
+      label.accessibilityIdentifier = Constants.priceLabelIdentifier
       label.translatesAutoresizingMaskIntoConstraints = false
       return label
   }()
@@ -37,6 +46,7 @@ class RootView: UIView {
       label.textColor = UIColor.white
       label.textAlignment = .center
       label.font = UIFont.systemFont(ofSize: 18)
+      label.accessibilityIdentifier = Constants.titleLabelIdentifier
       label.translatesAutoresizingMaskIntoConstraints = false
       return label
   }()
@@ -44,6 +54,7 @@ class RootView: UIView {
   let btcIcon: UIImageView = {
       let image = UIImageView(image: UIImage(systemName: "bitcoinsign"))
       image.tintColor = .iconWhite
+      image.accessibilityIdentifier = Constants.btcIconIdentifier
       image.translatesAutoresizingMaskIntoConstraints = false
       return image
   }()
@@ -53,6 +64,7 @@ class RootView: UIView {
       label.textAlignment = .natural
       label.textColor = .secondaryText
       label.text = Texts.description
+      label.accessibilityIdentifier = Constants.descriptionLabelIdentifier
       label.translatesAutoresizingMaskIntoConstraints = false
       return label
   }()
