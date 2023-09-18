@@ -8,29 +8,32 @@
 import XCTest
 @testable import CryptoCurrent
 
-final class CryptoCurrentTests: XCTestCase {
+final class CryptoPricePresenterTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    private var sut: CryptoPricePresenter!
+    private var mockView: MockCryptoPriceViewInput!
+    private var mockWebSocketService: MockWebSocketService!
+
+    override func setUp() {
+        super.setUp()
+        mockView = MockCryptoPriceViewInput()
+        mockWebSocketService = MockWebSocketService(webSocketURL: URL(string: "wss://example.com")!)
+        sut = CryptoPricePresenter(view: mockView, webSocketURL: URL(string: "wss://example.com")!)
+        sut.webSocketService = mockWebSocketService
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func testConnectWebSocket() {
+        sut.connectWebSocket()
+        XCTAssertTrue(mockWebSocketService.isConnected)
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    func testDisconnectWebSocket() {
+        sut.disconnect()
+        XCTAssertFalse(mockWebSocketService.isConnected)
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testDidReceiveInvalidPriceData() {
+        mockWebSocketService.mockReceivedMessage(message: "{\"invalidKey\":\"1234.56\"}")
+        XCTAssertNil(mockView.displayedPrice)
     }
-
 }
